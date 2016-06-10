@@ -1,16 +1,20 @@
 package br.com.alura.horas.modelos;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
+// como o usuario esta sendo guardado na classe Serializable UsuarioLogado, precissa ser implementa a interface nele
 @Entity
-public class Usuario {
+public class Usuario implements Serializable {
 
 	@Id
 	@SequenceGenerator(name="usuario_idusuario_seq",
@@ -20,16 +24,16 @@ public class Usuario {
     generator="usuario_idusuario_seq")
 	private int id;
 	
-	@NotEmpty
+	@NotNull(message="Nao pode ser nulo") @NotEmpty(message="Nao pode ser vazio")
 	private String nome;
 					
-	@NotEmpty
+	@NotNull(message="Nao pode ser nulo") @NotEmpty(message="Nao pode ser vazio")
 	private String login;
 	
-	@NotEmpty
+	@NotNull(message="Nao pode ser nulo") @NotEmpty(message="Nao pode ser vazio")
 	private String senha;
 	
-	@NotEmpty
+	@NotNull(message="Nao pode ser nulo") @NotEmpty(message="Nao pode ser vazio")
 	@Email
 	private String email;
 
